@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sejal ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
+body{
+ overflow-x:hidden;
+ color:white;
+ background:radial-gradient(circle at center,#111,#000);
+}
+
+/* BACKGROUND VIDEO */
+#bgVideo{
+ position:fixed;top:0;left:0;width:100%;height:100%;
+ object-fit:cover;z-index:-3;
+ transition:opacity 1s ease;
+}
+
+/* SECOND VIDEO LAYER FOR HOLLYWOOD CROSSFADE */
+#bgVideo2{
+ position:fixed;top:0;left:0;width:100%;height:100%;
+ object-fit:cover;z-index:-4;
+ opacity:0;
+ transition:opacity 2s ease-in-out, transform 12s ease;
+}
+
+@keyframes zoom{from{transform:scale(1);}to{transform:scale(1.1);}}
+
+@media(max-width:768px){
+ #bgVideo{animation:none;}
+}
+
+.overlay{
+ position:fixed;width:100%;height:100%;
+ background:rgba(0,0,0,0.75);
+ z-index:-2;
+ pointer-events:none;
+}
+
+/* SECTION */
+section{padding:90px 20px;text-align:center;opacity:0;transform:translateY(60px);transition:1s ease;}
+section.show{opacity:1;transform:translateY(0);}
+
+.glass{
+ background:rgba(255,255,255,0.08);
+ backdrop-filter:blur(20px);
+ padding:40px;border-radius:25px;
+ max-width:1200px;margin:auto;
+ box-shadow:0 15px 40px rgba(0,0,0,0.5);
+}
+
+.hero{font-family:'Great Vibes',cursive;font-size:4.5rem;text-shadow:0 0 40px gold;}
+.birthday-msg{margin-top:20px;color:#ffd700;font-size:1.2rem;}
+h2{margin-bottom:25px;font-size:2rem;}
+
+.btn{
+ padding:14px 30px;border:none;border-radius:30px;
+ background:linear-gradient(45deg,#ff4e88,#ffd700);
+ color:white;cursor:pointer;margin-top:20px;
+ transition:0.3s;
+}
+.btn:hover{
+ transform:scale(1.05);
+ box-shadow:0 0 20px #ffd700;
+}
+
+/* GALLERY */
+.gallery{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;}
+.card{width:260px;height:360px;perspective:1000px;}
+.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:0.8s;}
+.card:hover .card-inner{transform:rotateY(180deg);}
+.card-front,.card-back{
+ position:absolute;width:100%;height:100%;
+ border-radius:20px;overflow:hidden;backface-visibility:hidden;
+}
+.card-front img{width:100%;height:100%;object-fit:cover;}
+.card-back{
+ background:rgba(0,0,0,0.92);
+ display:flex;align-items:center;justify-content:center;
+ padding:20px;text-align:center;transform:rotateY(180deg);
+ line-height:1.6;font-size:0.95rem;
+}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:20px;margin-top:30px;}
+.event{
+ background:rgba(0,0,0,0.6);
+ padding:20px;border-radius:20px;
+ transition:0.4s;
+}
+.event:hover{transform:scale(1.05);box-shadow:0 0 20px #ffd700;}
+.date{color:#ffd700;font-weight:bold;margin-bottom:8px;}
+
+/* LOVE LETTER */
+#loveLetter{display:none;margin-top:25px;line-height:1.8;font-size:1rem;animation:fadeIn 2s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* CONFETTI */
+.confetti{position:fixed;width:8px;height:8px;top:-10px;animation:fall linear forwards;pointer-events:none;}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
+
+/* SECRET */
+#secretMessage{
+ position:fixed;top:50%;left:50%;
+ transform:translate(-50%,-50%);
+ background:black;padding:30px;border-radius:20px;
+ display:none;z-index:9999;box-shadow:0 0 30px gold;
+ text-align:center;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+ .hero{font-size:2.8rem;}
+ .glass{padding:25px;}
+ .card{width:90%;}
+}
+
+footer{padding:40px;text-align:center;}
+</style>
+</head>
+
+<body>
+
+<video id="bgVideo" autoplay muted playsinline preload="auto" poster="preview.jpg"></video>
+<video id="bgVideo2" autoplay muted playsinline preload="auto"></video>
+
+<div class="overlay" aria-hidden="true"></div>
+
+<audio id="perfectSong" loop>
+<source src="Perfect.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO -->
+<section>
+<div class="glass">
+<div class="hero">Happy Birthday Sejal 🎂❤️</div>
+<p class="birthday-msg">You are my dream, my peace, my forever.</p>
+
+<button class="btn" onclick="birthdaySurprise()">Open Your Birthday Surprise 🎁</button>
+
+<div id="birthdayMessage" style="display:none;margin-top:20px;">
+I am deeply, madly, completely in love with you.
+
+I was scared to fall this deeply… but loving you feels right.
+
+Your eyes, your smile, your voice, your fragrance, your touch — everything about you feels like magic.
+
+You make me feel chosen. You make me feel safe.
+
+Someday officially… but in my heart, you’re already my Bayko.
+
+तुझ्याशिवाय आयुष्याची कल्पनाही करू शकत नाही.
+</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section>
+<div class="glass">
+<h2>Our Beautiful Memories 📸</h2>
+<div class="gallery">
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="sej1.jpg" alt="Sejal smiling"></div>
+<div class="card-back">Your eyes are my favorite universe.</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="sej2.jpg" alt="Sejal portrait"></div>
+<div class="card-back">Your smile makes my darkest days bright.</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="sej3.jpg" alt="Sejal candid"></div>
+<div class="card-back">Even your voice feels like home to me.</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="us1.jpg" alt="Together memory"></div>
+<div class="card-back">The beginning of forever.</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="us2.jpg" alt="Holding hands"></div>
+<div class="card-back">Holding your hand felt like destiny.</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="us3.jpg" alt="Special memory"></div>
+<div class="card-back">Every memory with you is priceless.</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="S1.jpg" alt="Special memory"></div>
+<div class="card-back">In every saree, you don’t just look beautiful… you look like my forever. 💛</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="S2.jpg" alt="Special memory"></div>
+<div class="card-back">Your natural beauty doesn’t need filters… but even flowers choose to sit on your head. 🌼</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="S3.jpg" alt="Special memory"></div>
+<div class="card-back">The way you smile… it feels like my entire world just turned bright. ✨</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="S4.jpg" alt="Special memory"></div>
+<div class="card-back">Your eyes hold calm, chaos, love, and my entire future. 🤍</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="us4.jpg" alt="Special memory"></div>
+<div class="card-back">With you beside me, I don’t need luck… I already won in life. 👫</div></div></div>
+
+<div class="card"><div class="card-inner">
+<div class="card-front"><img src="us5.jpg" alt="Special memory"></div>
+<div class="card-back">Every selfie with you becomes my favorite memory forever. ❤️</div></div></div>
+
+</div>
+</div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+<div class="glass">
+<h2>Our Complete Journey 📖</h2>
+<div class="timeline">
+
+<div class="event">
+<div class="date">14 Oct 2025 – 7:34 PM</div>
+I reacted to your saree story. Destiny started writing our story.
+</div>
+
+<div class="event">
+<div class="date">29 Nov 2025</div>
+First meeting. Nervous hearts. But I knew you were special.
+</div>
+
+<div class="event">
+<div class="date">24 Dec 2025</div>
+Second meeting. Comfort started replacing nervousness.
+</div>
+
+<div class="event">
+<div class="date">20 Jan 2026</div>
+Movie Date ❤️ Holding your hand felt magical.
+</div>
+
+<div class="event">
+<div class="date">13 Feb 2026</div>
+Right before your birthday — I realized I want forever with you.
+</div>
+
+<div class="event">
+<div class="date">Today – Your Birthday 🎂</div>
+The most important day. Because the love of my life was born.
+</div>
+
+<div class="event">
+<div class="date">Future...</div>
+Marriage. Home. World travel. Growing old together.
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- LOVE LETTER -->
+<section>
+<div class="glass">
+<h2>My Heart To You 💌</h2>
+
+<button class="btn" onclick="document.getElementById('loveLetter').style.display='block'">
+Read My Deepest Feelings
+</button>
+
+<div id="loveLetter">
+
+<div style="margin-bottom:15px;font-size:1.1rem;">Sejal,</div>
+
+<div style="margin-bottom:12px;">
+There’s something about the way you speak to me that makes everything feel softer… calmer… safer.
+</div>
+
+<div style="margin-bottom:12px;">
+Your voice doesn’t just reach my ears — it settles gently inside my heart.
+</div>
+
+<div style="margin-bottom:25px;">
+In your words, I find comfort. In your silence, I find peace. In your laughter, I find a reason to smile without even trying.
+</div>
+
+<div style="margin-bottom:15px;">
+In front of the world, you are strong, confident, unstoppable.
+</div>
+
+<div style="margin-bottom:25px;">
+But with me, you let yourself be gentle, vulnerable, beautifully real — and that is the version of you I treasure the most.
+</div>
+
+<div style="margin-bottom:15px;">
+Your smile fixes days you don’t even know were broken.
+</div>
+
+<div style="margin-bottom:12px;">
+When you look at me, even for a second, I feel chosen.
+</div>
+
+<div style="margin-bottom:25px;">
+And when you hold my hand, the whole world suddenly feels right.
+</div>
+
+<div style="margin-bottom:12px;">
+You have quietly become my comfort after long days, my calm during chaos, my light in moments of doubt.
+</div>
+
+<div style="margin-bottom:25px;">
+Your presence feels like home in a world that never stops moving.
+</div>
+
+<div style="margin-bottom:12px;">
+Main tumhare bina apni zindagi soch bhi nahi sakta.
+</div>
+
+<div style="margin-bottom:12px;">
+Tum meri aadat nahi… meri zarurat ho.
+</div>
+
+<div style="margin-bottom:12px;">
+Mera sukoon ho jab duniya thaka deti hai.
+</div>
+
+<div style="margin-bottom:25px;">
+Meri strength ho jab main khud par doubt karta hoon.
+</div>
+
+<div style="margin-bottom:12px;">
+तुझ्याबरोबर संसार करायचा आहे —
+</div>
+
+<div style="margin-bottom:12px;">
+फक्त नावासाठी नाही, तर मनाने, आत्म्याने, प्रत्येक श्वासाने.
+</div>
+
+<div style="margin-bottom:12px;">
+तुझ्याबरोबर जगभर फिरायचं आहे —
+</div>
+
+<div style="margin-bottom:12px;">
+नवीन शहरं, नवीन आठवणी… पण कायम तुझा हात माझ्या हातात.
+</div>
+
+<div style="margin-bottom:25px;">
+तुझ्या प्रत्येक स्वप्नाला पूर्ण करायचं आहे — कारण तू जिंकलीस तर ती माझी सगळ्यात मोठी जिंक असेल.
+</div>
+
+<div style="margin-bottom:12px;">
+I promise to protect your smile — even on the days you forget how beautiful it is.
+</div>
+
+<div style="margin-bottom:12px;">
+I promise to stand beside you — not only in happiness, but in every storm life brings.
+</div>
+
+<div style="margin-bottom:25px;">
+I promise to love you not just in this lifetime… but in every lifetime where our souls find each other again.
+</div>
+
+<div style="font-size:1.2rem;color:#ffd700;" class="glow-text">
+Happy Birthday, my love. You are not just my forever —
+<span class="heartbeat">my heart</span>, my peace, my greatest blessing. ❤️
+</div>
+
+</div>
+
+<div style="margin-top:40px;">
+<button class="btn" onclick="playVoiceNote()">
+Close Your Eyes & Listen ❤️
+</button>
+</div>
+
+<audio id="finalVoiceNote">
+<source src="myvoice.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+</section>
+
+<footer>Forever Yours ❤️ Amit</footer>
+
+<div id="secretMessage"></div>
+
+<script>
+
+const isMobile = window.innerWidth < 768;
+
+/* VIDEO */
+/* =========================
+   HOLLYWOOD CINEMATIC CROSSFADE
+   ========================= */
+
+const videos=[
+"Sej1.mp4",
+"Sej2.mp4",
+"Sej3.mp4",
+"sejsaree1.mp4",
+"sejsaree2.mp4",
+"sejsaree3.mp4"
+];
+
+let index=0;
+
+const video1=document.getElementById("bgVideo");
+const video2=document.getElementById("bgVideo2");
+
+let activeVideo=video1;
+let nextVideo=video2;
+
+/* Loop both videos */
+video1.loop=true;
+video2.loop=true;
+
+function changeVideo(){
+
+ nextVideo.src=videos[index];
+ nextVideo.load();
+ nextVideo.play();
+
+ nextVideo.style.transform="scale(1.08)";
+ nextVideo.style.opacity="1";
+
+ activeVideo.style.opacity="0";
+ activeVideo.style.transform="scale(1.15)";
+
+ setTimeout(()=>{
+  let temp=activeVideo;
+  activeVideo=nextVideo;
+  nextVideo=temp;
+ },2000);
+
+ index=(index+1)%videos.length;
+}
+
+/* Start first video */
+activeVideo.src=videos[index];
+activeVideo.play();
+activeVideo.style.opacity="1";
+
+index=(index+1)%videos.length;
+
+/* Auto change every 20 seconds */
+setInterval(changeVideo,20000);
+
+
+/* SONG - TRY AUTOPLAY ON LOAD */
+
+const perfectSong=document.getElementById("perfectSong");
+
+/* Try autoplay immediately */
+window.addEventListener("load",()=>{
+ const playPromise=perfectSong.play();
+ 
+ if(playPromise!==undefined){
+  playPromise.catch(()=>{
+   // If blocked, wait for first interaction
+   document.addEventListener("click",()=>perfectSong.play(),{once:true});
+   document.addEventListener("touchstart",()=>perfectSong.play(),{once:true});
+  });
+ }
+});
+
+/* CONFETTI */
+function birthdaySurprise(){
+ document.getElementById("birthdayMessage").style.display="block";
+ const count=isMobile?40:80;
+ for(let i=0;i<count;i++){
+  const c=document.createElement("div");
+  c.className="confetti";
+  c.style.left=Math.random()*100+"vw";
+  c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+  c.style.animationDuration=(Math.random()*3+2)+"s";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),4000);
+ }
+}
+
+/* VOICE */
+function playVoiceNote(){
+ document.getElementById("finalVoiceNote").play();
+}
+
+/* SECRET */
+let input="";
+window.addEventListener("keydown",(e)=>{
+ input=(input+e.key.toLowerCase()).slice(-20);
+
+ if(input.includes("forever")){
+  showSecret("I will choose you in every lifetime ❤️");
+ }
+
+ if(input.includes("yeedi")||input.includes("shaani")||
+    input.includes("bayko")||input.includes("sejuu")||
+    input.includes("balaa")){
+  showSecret("Only my Shaani would know this ❤️");
+ }
+});
+
+function showSecret(message){
+ const box=document.getElementById("secretMessage");
+ box.innerText=message;
+ box.style.display="block";
+ setTimeout(()=>{box.style.display="none";},4000);
+ input="";
+}
+
+/* SCROLL */
+const sections=document.querySelectorAll("section");
+function reveal(){
+ sections.forEach(sec=>{
+  if(sec.getBoundingClientRect().top<window.innerHeight-100){
+   sec.classList.add("show");
+  }
+ });
+}
+window.addEventListener("scroll",reveal);
+window.addEventListener("load",reveal);
+
+</script>
+
+</body>
+</html>
